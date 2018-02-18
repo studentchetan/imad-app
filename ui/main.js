@@ -1,7 +1,7 @@
 console.log('Loaded!');
 //move the image
 
-var img = document.getElementById('img');
-img.onclick = function() {
-  img.style.marginleft = '100px';  
+var img = document.getElementById('madi');
+madi.onclick = function() {
+  madi.style.marginleft = '100px';  
 };
