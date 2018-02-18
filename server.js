@@ -5,12 +5,72 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+var articleone = {
+    title: 'Article One | Tanmai Gopal',
+    heading: "Article One",
+    date: "April 5th,2004",
+    content :
+    `<p>
+    Quality Content.Quality Content.Quality Content.Quality Content.Quality Content.Quality Content.Quality Content.Quality Content.Quality Content 
+    .Quality Content.Quality Content.Quality Content.Quality Content.
+    </p>`
+};
+
+function createTemplate (data){
+var title = data.title ;
+var heading = data.heading ;
+var date = data.date ;
+var content = data content;
+    
+
+
+var htmlTemplate = `<html>
+    <head>
+        <title>${title}</title>
+        <style>
+        .container{
+            max-width :800px;
+            margin : 0 auto;
+            color: grey;
+            font-family: san-serif;
+            padding-top : 30px;
+            padding-left : 20px;
+            padding-right: 20px;
+            
+            
+        }
+            
+        </style>
+    </head>
+
+    <body>
+    <div class="container">
+        <div>
+            <a href="/">Home</a>
+        </div>
+        <hr/>
+        <div>
+        ${content}
+            
+        </div>
+        <div>
+           
+        </div>
+    </div>
+    </body>
+    
+</html>`;
+return htmlTemplate;
+}
+    
+
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
 app.get('/article-one', function(req,res){
-      res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+      res.send(createTemplate(articleone));
 
 });
 
