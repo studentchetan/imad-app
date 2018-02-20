@@ -2,9 +2,10 @@ console.log('Loaded!');
 //move the image
 
 //counter Javascript
-var button = document.getElementById('counter');
+
 var counter = 0;
 var request = new XMLHttpRequest();
+var button = document.getElementById('counter');
 
 request.onreadystatechange = function(){
     if(request.readyState === XMLHttprequest.DONE){
