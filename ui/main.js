@@ -3,9 +3,8 @@ console.log('Loaded!');
 
 //counter Javascript
 
-var counter = 0;
 var request = new XMLHttpRequest();
-var button = document.getElementById('counter');
+
 
 button.onclick = function () {
 
@@ -26,8 +25,6 @@ request.send(null);
 };
 
 //submit name
-var nameInput = document.getElementById('name');
-var name = nameInput.value;
 var submit = document.getElementById('submit_btn');
 submit.onclick = function (){
     //make request to server and send name
@@ -42,3 +39,6 @@ submit.onclick = function (){
     ul.innerHTML = list;
     
 };
+var nameInput = document.getElementById('name');
+var name = nameInput.value;
+
