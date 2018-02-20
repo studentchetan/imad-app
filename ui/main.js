@@ -7,19 +7,20 @@ var counter = 0;
 var request = new XMLHttpRequest();
 var button = document.getElementById('counter');
 
+button.onclick = function () {
+
+
 request.onreadystatechange = function(){
     if(request.readyState === XMLHttprequest.DONE){
         //Take some action
         if (request.status === 200){
             var counter =request.responseText;
+            var span = document.getElementById('count');
+            span.innerHTML = counter.toString();
         }
     }
-}
-button.onclick = function () {
-    //Make a request t the counter endpoint and capture a response,store it in a avariable,render the variable in the correct span.
-    counter = counter + 1;
-    var span = document.getElementById('count');
-    span.innerHTML = counter.toString();
-    
-    
+};
+//make the request
+request.open('GET','http://chetankar65.imad.hasura-app.io/counter',true);
+request.send(null);
 };
