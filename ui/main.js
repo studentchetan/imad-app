@@ -25,6 +25,8 @@ request.send(null);
 };
 
 //submit name
+var nameInput = document.getElementbyId('name');
+var name = nameInput.value;
 var submit = document.getElementById('submit_btn');
 submit.onclick = function (){
     //make request to server and send name
