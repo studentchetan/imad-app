@@ -60,7 +60,7 @@ app.get('/ui/madi.png', function (req, res) {
 var Pool = new Pool(config);
 app.get('/test-db', function (req, res ){
    //make a SELECT Request and return response
-   Pool.query('SELECT * FROM test',function(err,result){
+   Pool.query('INSERT INTO test(name) VALUES (name)',function(err,result){
        if (err){
            res.status(500).send(err.toString());
            
