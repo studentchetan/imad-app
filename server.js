@@ -57,18 +57,19 @@ app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
-var Pool = new Pool(config);
-app.get('/test-db', function (req, res ){
-   //make a SELECT Request and return response
-   Pool.query('INSERT INTO test(name) VALUES (name)',function(err,result){
-       if (err){
+var pool = new Pool(config);
+app.get('/create-user',function(req,res){
+   //username,Password
+   var salt = crypto.randomBytes(128).toString('hex');
+   var dbString = hash(password,salt);
+   pool.query('INSERT INTO "user" (username,password) VALUES($1,$2)',[username,dbString], function (err,result) {
+       if (err) {
            res.status(500).send(err.toString());
-           
-       }else{
-           res.send(JSON.Stringify(result));
+       } else {
+           res.send("User successfully created :" + username);
        }
+       
    });
-   
 });
 
 // Do not change port, otherwise your app won't run on IMAD servers
