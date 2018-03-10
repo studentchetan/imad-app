@@ -3,6 +3,8 @@ var morgan = require('morgan');
 var path = require('path');
 var Pool = require('pg').Pool;
 var crypto = require('crypto');
+var session = require('express-session');
+
 
 var config ={
     user: 'chetankar65',
@@ -15,6 +17,12 @@ var config ={
 
 var app = express();
 app.use(morgan('combined'));
+app.use(bodyParser.json());
+app.use(session ({
+    secret : 'SomeRandomSecretValue',
+    cookie : {maxAge : 100 * 60 * 60 *24}
+}));
+
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
