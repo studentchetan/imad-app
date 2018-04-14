@@ -28,25 +28,15 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function(req,res){
-  res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
-
-
-});
-
-app.get('/article-two', function(req,res){
-      res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-
-});
-
-app.get('/article-three', function(req,res){
-      res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-
-});
-
-app.get('/article-two', function(req,res){
-      res.sendFile(path.join(__dirname, 'ui', 'register.html'));
-
+var Pool = new Pool(config);
+app.get('/test-db',function(req,res){
+  Pool.query('SELECT * FROM test',function(err,result){
+    if (err) {
+      res.status(500).send(err.toString());
+    }else {
+      res.send(JSON.stringify(result));
+    }
+  });
 });
 
 function hash(input, salt) {
@@ -70,7 +60,6 @@ app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
-var pool = new Pool(config);
 app.get('/create-user',function(req,res){
    //username,Password
    var salt = crypto.randomBytes(128).toString('hex');
